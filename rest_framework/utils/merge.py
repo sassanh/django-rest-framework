@@ -1,6 +1,6 @@
-###
+"""
 Helper function for merging mappings
-###
+"""
 import collections
 
 def update(dictionary1, dictionary2):
