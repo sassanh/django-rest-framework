@@ -21,6 +21,7 @@ from django.utils.datastructures import MultiValueDict
 
 from rest_framework import HTTP_HEADER_ENCODING, exceptions
 from rest_framework.settings import api_settings
+from rest_framework.utils import merge
 
 
 def is_form_media_type(media_type):
@@ -245,8 +246,7 @@ class Request(object):
         if not _hasattr(self, '_data'):
             self._data, self._files = self._parse()
             if self._files:
-                self._full_data = self._data.copy()
-                self._full_data.update(self._files)
+                self._full_data = merge.update(self._data, self._files)
             else:
                 self._full_data = self._data
 
